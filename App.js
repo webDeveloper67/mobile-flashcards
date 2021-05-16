@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
-import {StyleSheet, Text, View, Platform} from 'react-native'
+import {View, Platform} from 'react-native'
 import {NavigationContainer} from '@react-navigation/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {createStackNavigator} from '@react-navigation/stack'
-import {AntDesign} from '@expo/vector-icons'; 
-import {Entypo} from '@expo/vector-icons'; 
+import {AntDesign} from '@expo/vector-icons' 
+import {Entypo} from '@expo/vector-icons'
 import Constants from 'expo-constants'
 import {deepBlue,lightGray} from './utils/colors'
 // Components
@@ -36,7 +36,6 @@ const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
   return (
-    <Provider store={store}>
       <Tab.Navigator
         screenOptions={
           ({ route }) => ({
@@ -71,7 +70,6 @@ const Tabs = () => {
           component={AddDeck}
           options={{ headerShown: false }} />
       </Tab.Navigator>
-    </Provider>
   )
 }
 
@@ -85,56 +83,58 @@ const App = () => {
   }, [])
 
   return (
-    <NavigationContainer>
-      <View style={{flex: 1}}>
-        <Stack.Navigator>
-          <Stack.Screen
-          name="Decks"
-          component={Tabs} />
-          <Stack.Screen
-            name="DeckView"
-            component={DeckView}
-            options={({ route }) => ({
-              headerTintColor: red,
-              headerStyle: {
-                backgroundColor: deepBlue
-              },
-              title: route.params.entryId,
-              headerTitle: route.params.entryId
-            })} />
-          <Stack.Screen
-            name="AddCard"
-            component={AddCard}
-            options={({ route }) => ({
-              headerTintColor: lightGray,
-              headerStyle: {
-                backgroundColor: deepBlue
-              },
-              title: 'Add Card'
-            })} />
-          <Stack.Screen
-            name="CardView"
-            component={CardView}
-            options={({ route }) => ({
-              headerTintColor: lightGray,
-              headerStyle: {
-                backgroundColor: deepBlue
-              },
-              title: 'Quiz'
-            })} />
-          <Stack.Screen
-            name="QuizResults"
-            component={QuizResults}
-            options={({ route }) => ({
-              headerTintColor: lightGray,
-              headerStyle: {
-                backgroundColor: deepBlue
-              },
-              title: 'Quiz'
-            })} />
-        </Stack.Navigator>
-      </View>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <View style={{flex: 1}}>
+          <Stack.Navigator>
+            <Stack.Screen
+            name="Decks"
+            component={Tabs} />
+            <Stack.Screen
+              name="DeckView"
+              component={DeckView}
+              options={({ route }) => ({
+                headerTintColor: lightGray,
+                headerStyle: {
+                  backgroundColor: deepBlue
+                },
+                title: route.params.entryId,
+                headerTitle: route.params.entryId
+              })} />
+            <Stack.Screen
+              name="AddCard"
+              component={AddCard}
+              options={({ route }) => ({
+                headerTintColor: lightGray,
+                headerStyle: {
+                  backgroundColor: deepBlue
+                },
+                title: 'Add Card'
+              })} />
+            <Stack.Screen
+              name="CardView"
+              component={CardView}
+              options={({ route }) => ({
+                headerTintColor: lightGray,
+                headerStyle: {
+                  backgroundColor: deepBlue
+                },
+                title: 'Quiz'
+              })} />
+            <Stack.Screen
+              name="QuizResults"
+              component={QuizResults}
+              options={({ route }) => ({
+                headerTintColor: lightGray,
+                headerStyle: {
+                  backgroundColor: deepBlue
+                },
+                title: 'Quiz'
+              })} />
+          </Stack.Navigator>
+        </View>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

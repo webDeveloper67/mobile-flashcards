@@ -1,7 +1,5 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { FontAwesome, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
-import { white, red, orange, blue, lightPurple, pink } from './colors';
+import {StyleSheet} from 'react-native'
 import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -50,17 +48,6 @@ export function getDailyReminderValue() {
   }]
 }
 
-const styles = StyleSheet.create({
-  iconContainer: {
-    padding: 5,
-    borderRadius: 8,
-    width: 50,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 20,
-  }
-})
 
 export function clearLocalNotification() {
   return AsyncStorage.removeItem(NOTIFICATION_KEY)
